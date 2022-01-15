@@ -1,0 +1,70 @@
+﻿
+@model NBP_1_2.Models.Player
+
+@{
+    ViewData["Title"] = "Player Info";
+}
+
+<h1>Player</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="username" />
+            <div class="form-group">
+                <label asp-for="username" class="control-label"></label>
+                <input asp-for="username" class="form-control" disabled="true"/>
+                <span asp-validation-for="username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="money" class="control-label"></label>
+                <input asp-for="money" class="form-control" disabled="true"/>
+                <span asp-validation-for="money" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="score" class="control-label"></label>
+                <input asp-for="score"  class="form-control" disabled="true" />
+                <span asp-validation-for="score" class="text-danger"></span>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+    <table class="table">
+    <thead>
+        <tr>
+            <th>
+                Player ID
+            </th>
+            <th>
+                Player Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.inTeam) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+    
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/notification_min.js"></script>

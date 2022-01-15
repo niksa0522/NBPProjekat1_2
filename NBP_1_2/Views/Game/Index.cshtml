@@ -1,0 +1,44 @@
+﻿@model IEnumerable<NBP_1_2.Models.GameModel>
+@{
+    ViewData["Title"] = "Game Info";
+}
+
+
+<form class="form" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <p>
+        <input type="submit" value="Get Standard Leaderboard" asp-action="Index"  />
+        <input type="submit" value="Get Friends Leaderboard" asp-action="GetFriends"  />
+        <input type="submit" value="Players In Team" asp-action="Team"  />
+    </p>
+</form>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                User
+            </th>
+            <th>
+                Score
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.info)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.score)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/notification_min.js"></script>
+

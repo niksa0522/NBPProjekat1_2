@@ -1,0 +1,83 @@
+﻿@model NBP_1_2.Models.FootballPlayer
+
+@{
+    ViewData["Title"] = "Edit Football Player";
+}
+
+<h1>Edit</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+            <div class="form-group">
+                <label asp-for="id" class="control-label"></label>
+                <input asp-for="id" class="form-control" disabled="true" />
+                <span asp-validation-for="id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="name" class="control-label"></label>
+                <input asp-for="name" class="form-control" />
+                <span asp-validation-for="name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="birthday" class="control-label"></label>
+                <input asp-for="birthday"  type="date" class="form-control" />
+                <span asp-validation-for="birthday" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="pozition" class="control-label"></label>
+                <input asp-for="pozition" class="form-control" />
+                <span asp-validation-for="pozition" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="number" class="control-label"></label>
+                <input asp-for="number" class="form-control" />
+                <span asp-validation-for="number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="value" class="control-label"></label>
+                <input asp-for="value" class="form-control" />
+                <span asp-validation-for="value" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="playesIn.name" class="control-label"></label>
+                <input asp-for="playesIn.name" class="form-control" disabled="true" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+
+        <form asp-action="AddToTeam" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+    <p>
+        Add Player To Team (teamID): <input type="text" name="idTeam" />
+        <input type="submit" value="Add" />
+    </p>
+</form>
+<form asp-action="RemoveFromTeam" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+    <p>
+        Remove player from team:
+        <input type="submit" value="Remove" />
+    </p>
+</form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+    
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/notification_min.js"></script>

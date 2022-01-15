@@ -1,0 +1,41 @@
+﻿@model NBP_1_2.Models.HomePageInfoModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+</div>
+<table class="table">
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model =>model.username) : 
+        </td>
+        <td>
+            @Html.DisplayFor(model =>model.username)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model =>model.UserType) :
+        </td>
+        <td>
+            @Html.DisplayFor(model =>model.UserType)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model =>model.onlinePlayers) :
+        </td>
+        <td>
+            @Html.DisplayFor(model =>model.onlinePlayers)
+        </td>
+    </tr>
+    </table>
+
+<div class="text-center">
+    <a asp-action="Logout">Logout</a>
+</div>
+    
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/notification_min.js"></script>

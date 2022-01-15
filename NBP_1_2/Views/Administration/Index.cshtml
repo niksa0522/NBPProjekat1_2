@@ -1,0 +1,14 @@
+﻿@model IEnumerable<NBP_1_2.Models.FootballPlayer>
+@{
+    ViewData["Title"] = "Admin";
+}
+<h4>Notification Controller</h4>
+
+
+        Message: <input type="text" id="message" name="message" />
+        Team ID: <input type="text" id="teamID" name="teamID" />
+        <button id="buttonSend">Send Message</button>
+
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/notificationSend.js"></script>
+

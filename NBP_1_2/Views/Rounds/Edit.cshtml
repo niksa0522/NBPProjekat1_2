@@ -1,0 +1,109 @@
+﻿
+@model NBP_1_2.Models.Round
+
+@{
+    ViewData["Title"] = "Edit Round Info";
+}
+
+<h1>Edit</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+            <div class="form-group">
+                <label asp-for="id" class="control-label"></label>
+                <input asp-for="id" class="form-control" disabled="true"/>
+                <span asp-validation-for="id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="htID" class="control-label"></label>
+                <input asp-for="htID" class="form-control" />
+                <span asp-validation-for="htID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="atID" class="control-label"></label>
+                <input asp-for="atID"  class="form-control" />
+                <span asp-validation-for="atID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="matchDate" class="control-label"></label>
+                <input asp-for="matchDate"  type="date" class="form-control" />
+                <span asp-validation-for="matchDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="roundNum" class="control-label"></label>
+                <input asp-for="roundNum" class="form-control" />
+                <span asp-validation-for="roundNum" class="text-danger"></span>
+                </div>
+            <div class="form-group">
+                <label asp-for="attendance" class="control-label"></label>
+                <input asp-for="attendance" class="form-control" />
+                <span asp-validation-for="attendance" class="text-danger"></span>
+            </div>
+                <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+    <table class="table">
+    <thead>
+        <tr>
+            <th>
+                Player ID
+            </th>
+            <th>
+                Player Name
+            </th>
+            <th>
+                Player Score
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.players) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.player.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.player.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.score)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+<h4>Add/Remove Player From Round</h4>
+<form class="form" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+    <p>
+        Player ID:
+        <input name="pID" />
+       <p> Score:
+        <input name="score" type="number" min="0" max="10" value="0" step=".1" />
+        <input type="submit" value="Add Player" asp-action="AddPlayerToRound"  />
+        <input type="submit" value="Remove Player"  asp-action="RemovePlayerFromRound" />
+    </p>
+</form>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+    
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/notification_min.js"></script>

@@ -1,0 +1,60 @@
+﻿@model NBP_1_2.Models.Player
+
+@{
+    Layout = "_LayoutLogin";
+    ViewData["Title"] = "Login";
+}
+
+
+<h1>Login Or Register</h1>
+<form class="form" method="post">
+<table class="table">
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model =>model.username)
+        </td>
+        <td>
+            @Html.EditorFor(model =>model.username)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.ValidationMessageFor(model=>model.username)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model =>model.password)
+        </td>
+        <td>
+            @Html.EditorFor(model =>model.password)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.ValidationMessageFor(model=>model.password)
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <label class="field-validation-error">@Html.DisplayFor(model=>model.LoginErrorMessage)</label>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="submit" value="Login" asp-action="login"/>
+            <input type="submit" value="Register" asp-action="Register"/>
+        </td>
+    </tr>
+    </table>
+
+    
+
+</form>
+
+
+     <script src="~/lib/Jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+

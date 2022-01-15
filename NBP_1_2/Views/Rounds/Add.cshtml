@@ -1,0 +1,56 @@
+﻿
+@model NBP_1_2.Models.Round
+
+@{
+    ViewData["Title"] = "Add Round";
+}
+
+<h1>Add</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Add">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+            <div class="form-group">
+                <label asp-for="htID" class="control-label"></label>
+                <input asp-for="htID" class="form-control" />
+                <span asp-validation-for="htID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="atID" class="control-label"></label>
+                <input asp-for="atID"  class="form-control" />
+                <span asp-validation-for="atID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="matchDate" class="control-label"></label>
+                <input asp-for="matchDate"  type="date" class="form-control" />
+                <span asp-validation-for="matchDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="roundNum" class="control-label"></label>
+                <input asp-for="roundNum" class="form-control" />
+                <span asp-validation-for="roundNum" class="text-danger"></span>
+                </div>
+            <div class="form-group">
+                <label asp-for="attendance" class="control-label"></label>
+                <input asp-for="attendance" class="form-control" />
+                <span asp-validation-for="attendance" class="text-danger"></span>
+            </div>
+                <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+    
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/notification_min.js"></script>

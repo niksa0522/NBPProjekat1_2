@@ -1,0 +1,54 @@
+﻿@model IEnumerable<NBP_1_2.Models.Player>
+@{
+    ViewData["Title"] = "Player";
+}
+
+<h1>Player</h1>
+
+<form class="form" method="post">
+    <p>
+        New password
+        <input name="password" />
+        <input type="submit" value="Change Password" asp-action="ChangePassword"  />
+    </p>
+</form>
+<form class="form" method="post">
+    <p>
+        Add Friend
+        <input name="fusername" />
+        <input type="submit" value="Add Friend" asp-action="AddFriend"  />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.score)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.score)
+            </td>
+            <td>
+                <a asp-action="Info" asp-route-id="@item.username">Details</a>
+                <a asp-action="Remove" asp-route-id="@item.username">Remove Friend</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/notification_min.js"></script>
+

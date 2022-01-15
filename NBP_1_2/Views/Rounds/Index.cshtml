@@ -1,0 +1,76 @@
+﻿@model IEnumerable<NBP_1_2.Models.Round>
+@{
+    ViewData["Title"] = "Rounds";
+}
+
+<h1>Rounds</h1>
+
+<p>
+    <a asp-action="Add">Add a new round</a>
+</p>
+
+<form asp-controller="Rounds"  asp-action="Index" method="get">
+    <p>
+        Round Num: <input type="text" name="roundNum" />
+        Date: <input type="date" name="date" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                Home Team
+            </th>
+            <th>
+                Away Team
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.roundNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.matchDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.attendance)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.homeTeam.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.awayTeam.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.roundNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.matchDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.attendance)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <a asp-action="Info" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/notification_min.js"></script>
+

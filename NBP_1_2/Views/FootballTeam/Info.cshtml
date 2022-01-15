@@ -1,0 +1,89 @@
+﻿@model NBP_1_2.Models.FootballTeam
+
+@{
+    ViewData["Title"] = "Info about Football Team";
+}
+
+<h1>Info</h1>
+
+<hr />
+
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" id="teamID" />
+            <div class="form-group">
+                <label asp-for="id" class="control-label"></label>
+                <input asp-for="id" class="form-control" disabled="true" />
+                <span asp-validation-for="id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="name" class="control-label"></label>
+                <input asp-for="name" class="form-control" disabled="true"/>
+                <span asp-validation-for="name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="homeTown" class="control-label"></label>
+                <input asp-for="homeTown" class="form-control" disabled="true" />
+                <span asp-validation-for="homeTown" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="stadiumName" class="control-label"></label>
+                <input asp-for="stadiumName" class="form-control" disabled="true" />
+                <span asp-validation-for="stadiumName" class="text-danger"></span>
+            </div>
+        </form>
+    </div>
+    <table class="table">
+    <thead>
+        <tr>
+            <th>
+                Player Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.players) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+
+<form asp-action="FollowTeam" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+    <p>
+        Follow Team:
+        <input type="submit" value="Follow"/>
+    </p>
+</form>
+<form asp-action="UnfollowTeam" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+    <p>
+        Unfollow Team:
+        <input type="submit" value="Unfollow"/>
+    </p>
+</form>
+
+<input type="button" id="subscribeButton" value="Get Notifications When Team Plays" />
+<input type="button" id="unsubscribeButton" value="Stop Getting Notifications When Team Plays" />
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+    
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/notificationSub.js"></script>
